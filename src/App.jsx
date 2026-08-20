@@ -19,7 +19,6 @@ import SaaSProductDevelopmentSection from './components/SaaSProductDevelopmentSe
 import IntegrationSection from './components/IntegrationSection';
 import DigitalMarketing from './components/DigitalMarketing';
 import MobileExperience from './components/MobileExperience';
-import Card from './components/Card';
 
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -62,6 +61,21 @@ const Home = () => (
 
     <div id="cta" className="relative">
        <CTA />
+    </div>
+  </main>
+);
+
+const NotFound = () => (
+  <main className="min-h-[60vh] flex items-center justify-center px-6 pt-36 pb-20 text-center">
+    <div className="max-w-xl space-y-6">
+      <p className="label-md text-[var(--primary)]">404 · Route not found</p>
+      <h1 className="text-5xl md:text-7xl font-black tracking-[-0.04em]">This page does not exist.</h1>
+      <p className="body-lg text-[var(--on-surface-variant)]">
+        The address may be outdated or mistyped. Return to the Strydo homepage to continue.
+      </p>
+      <a href="/" className="btn-primary inline-flex items-center justify-center !px-8 !py-4 !text-base">
+        Return home
+      </a>
     </div>
   </main>
 );
@@ -135,6 +149,7 @@ const App = () => {
           <Route path="/integrations-automation" element={<IntegrationSection />} />
           <Route path="/digital-marketing" element={<DigitalMarketing />} />
           <Route path="/mobile-experience" element={<MobileExperience />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <Footer />

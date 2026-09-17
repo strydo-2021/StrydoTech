@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Manrope:wght@400;600;800&family=Space+Grotesk:wght@300;700&family=Cormorant+Garamond:ital,wght@0,700;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,23 +8,254 @@
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+    --primary: #2997AC;
+    --primary-container: #e0f2f1;
+    --on-primary: #ffffff;
+
+    --secondary: #6C3483;
+    --secondary-container: #f3e5f5;
+    --on-secondary: #ffffff;
+
+    --tertiary: #F15A24;
+    --on-tertiary: #ffffff;
+
+    --surface: #f9f9fc;
+    --surface-container-low: #f3f3f6;
+    --surface-container: #eeeeee;
+    --surface-container-high: #e6e6e6;
+    --surface-container-highest: #dddddd;
+    --surface-container-lowest: #ffffff;
+
+    --on-surface: #1a1c1e;
+    --on-surface-variant: #44474e;
+    --outline-variant: rgba(68, 71, 78, 0.15);
+
+    --shadow-ambient: 0px 12px 32px rgba(26, 28, 30, 0.06);
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    font-family: var(--font-sans);
-    background-color: #08080C; /* Default dark background for Strydo */
+    font-family: 'Inter', sans-serif;
+    background-color: #08080C;
     color: #F7F7F5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Utilities for glassmorphism */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Manrope', sans-serif;
+    @apply font-black;
+  }
+}
+
+@layer components {
   .glass {
     @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
+
+  .display-lg {
+    @apply text-[3.5rem] font-black tracking-[-0.04em] leading-[0.85];
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .serif-display {
+    font-family: 'Cormorant Garamond', serif;
+    @apply font-bold tracking-tight leading-[0.8];
+  }
+
+  .technical-display {
+    font-family: 'Space Grotesk', sans-serif;
+    @apply font-bold tracking-tighter;
+  }
+
+  .headline-md {
+    @apply text-[1.75rem] font-bold leading-tight;
+  }
+
+  .body-lg {
+    @apply text-[1rem] leading-relaxed font-medium;
+  }
+
+  .label-md {
+    @apply text-[0.75rem] font-bold tracking-[0.2em] uppercase;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--primary)] text-[var(--on-primary)] rounded-md px-12 py-6 font-black text-xl transition-all hover:brightness-110 active:scale-95 shadow-lg;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--surface-container-highest)] text-[var(--primary)] rounded-md px-8 py-4 font-bold transition-all hover:brightness-95 active:scale-95;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .glass-panel {
+    @apply bg-[rgba(249,249,252,0.6)] backdrop-blur-[20px] border border-[var(--outline-variant)];
+  }
+
+  .chip {
+    @apply rounded-full px-4 py-1.5 bg-[var(--secondary-container)] text-[var(--secondary)] font-bold text-[10px] tracking-widest uppercase;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .circuit-rail {
+    @apply relative overflow-hidden;
+  }
+
+  .circuit-rail::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[var(--primary)] to-[var(--secondary)];
+  }
+
+  .card-ambient {
+    @apply bg-[var(--surface-container-lowest)] shadow-[var(--shadow-ambient)] rounded-3xl p-8;
+  }
 }
-git add .
+
+.gradient-signature {
+  background: linear-gradient(
+    135deg,
+    #2997AC 0%,
+    #6C3483 50%,
+    #F15A24 100%
+  );
+}
+
+.text-gradient-signature {
+  @apply bg-clip-text text-transparent;
+  background: linear-gradient(
+    135deg,
+    #2997AC 0%,
+    #6C3483 50%,
+    #F15A24 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  position: relative;
+}
+
+.text-glint {
+  position: relative;
+  overflow: hidden;
+}
+
+.text-glint::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: glint 4s infinite linear;
+}
+
+@keyframes glint {
+  0% {
+    left: -100%;
+  }
+
+  25% {
+    left: 200%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+.ghost-border {
+  border: 1px solid var(--outline-variant);
+}
+
+.btn-17 {
+  background: black;
+  color: white;
+  border-radius: 9999px;
+  border: 2px solid white;
+  padding: 0.6rem 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.btn-17 .text-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-17 .text {
+  position: relative;
+}
+
+.btn-17:hover .text {
+  animation: move-up-alternate 0.3s forwards;
+}
+
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.btn-17:before,
+.btn-17:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 102%;
+  background: #006575;
+  top: -104%;
+  left: -50%;
+  transform: skew(30deg) translateY(var(--progress, 0));
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn-17:after {
+  top: 102%;
+  left: 50%;
+}
+
+.btn-17:hover:before {
+  --progress: 100%;
+}
+
+.btn-17:hover:after {
+  --progress: -102%;
+}
+
+.btn-17:hover {
+  color: white;
+}
